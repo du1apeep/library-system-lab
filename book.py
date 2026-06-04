@@ -30,3 +30,4 @@ class BookCatalog:
         return [book for book in self.books if title.lower() in book.title.lower()]
 
     def get_info(self): pass
+    def get_description(self): pass
