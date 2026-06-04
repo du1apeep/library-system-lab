@@ -29,3 +29,4 @@ class BookCatalog:
     def search_by_title(self, title: str):
         return [book for book in self.books if title.lower() in book.title.lower()]
 
+    def get_info(self): pass
