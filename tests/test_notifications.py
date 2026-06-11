@@ -78,8 +78,8 @@ class TestEmailNotifier(unittest.TestCase):
 
         # Перевіряємо, чи викликав метод print()
         # правильний текст
-        expected_output = "Email sent to test@example.com: "
-        "Ваш термін оренди закінчується."
+        expected_output = ("Email sent to test@example.com: "
+                           "Ваш термін оренди закінчується.")
         mock_print.assert_called_once_with(expected_output)
 
 
