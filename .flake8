@@ -1,0 +1,4 @@
+ini
+[flake8]
+max-line-length = 88
+exclude = .git,__pycache__,venv,.venv
