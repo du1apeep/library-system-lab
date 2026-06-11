@@ -3,9 +3,10 @@ from notifications import EmailNotifier, NotificationManager
 from user import Reader
 from book import Book, Genre
 
+
 def main():
     my_catalog = Catalog()
-    
+
     noti = NotificationManager()
 
     book1 = Book(1, "The Great Gatsby", "F. Scott Fitzgerald", Genre.FICTION)
@@ -20,7 +21,8 @@ def main():
     # (припускаю, що у вашому BookCatalog є метод search_by_title)
     found_books = my_catalog.catalog.search_by_title("Gatsby")
     if found_books:
-        print(f"Успіх! Книгу знайдено: '{found_books[0].title}', Автор: {found_books[0].author}")
+        print(
+            f"Успіх! Книгу знайдено: '{found_books[0].title}', Автор: {found_books[0].author}")
     else:
         print("Книгу не знайдено у каталозі.")
 
@@ -32,13 +34,13 @@ def main():
     print("\n--- 3. ПЕРЕВІРКА СИНГЛТОНУ (SINGLETON) ---")
     # Створюємо нібито "новий" каталог
     catalog2 = Catalog()
-    
+
     # Перевіряємо, чи це той самий об'єкт у пам'яті
     if my_catalog is catalog2:
         print("Успіх! Catalog працює як Singleton (це один і той самий об'єкт).")
     else:
         print("Помилка: Синглтон не працює, створено різні об'єкти.")
-        
+
 
 if __name__ == "__main__":
     main()

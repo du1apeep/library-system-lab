@@ -2,11 +2,13 @@ from datetime import datetime, timedelta
 from book import Book
 from user import Reader
 
+
 class BorrowingItem:
     def __init__(self, book: Book):
         self.book = book
-        self.due_date = datetime.now() + timedelta(days=14) # на 2 тижні
+        self.due_date = datetime.now() + timedelta(days=14)  # на 2 тижні
         self.return_date = None
+
 
 class Borrowing:
     def __init__(self, reader: Reader):
@@ -29,4 +31,5 @@ class Borrowing:
                 book.isAvailable = True
                 print(f"{self.reader.name} returned '{book.title}'")
                 return
-        print(f"{self.reader.name} did not borrow '{book.title}' or has already returned it.")
+        print(
+            f"{self.reader.name} did not borrow '{book.title}' or has already returned it.")

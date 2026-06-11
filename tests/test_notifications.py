@@ -1,20 +1,21 @@
 # tests/test_notifications.py
+from notifications import NotificationManager, EmailNotifier
 import unittest
 from unittest.mock import Mock, patch
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..')))
 
-from notifications import NotificationManager, EmailNotifier
 
 class TestNotificationManager(unittest.TestCase):
-    
+
     def setUp(self):
         """Підготовка для тестування Subject (Видавця)"""
         self.manager = NotificationManager()
-        
-        # Мокаємо залежності: нам не потрібні реальні EmailNotifier, 
+
+        # Мокаємо залежності: нам не потрібні реальні EmailNotifier,
         # створюємо абстрактних "спостерігачів"
         self.mock_observer1 = Mock()
         self.mock_observer2 = Mock()
@@ -22,7 +23,7 @@ class TestNotificationManager(unittest.TestCase):
     def test_attach_observer(self):
         """Перевірка додавання підписника"""
         self.manager.attach(self.mock_observer1)
-        
+
         self.assertEqual(len(self.manager._observers), 1)
         self.assertIn(self.mock_observer1, self.manager._observers)
 
@@ -31,7 +32,7 @@ class TestNotificationManager(unittest.TestCase):
         self.manager.attach(self.mock_observer1)
         # Намагаємося додати того ж самого підписника вдруге
         self.manager.attach(self.mock_observer1)
-        
+
         # Список має містити лише 1 елемент
         self.assertEqual(len(self.manager._observers), 1)
 
@@ -39,10 +40,10 @@ class TestNotificationManager(unittest.TestCase):
         """Перевірка видалення підписника"""
         self.manager.attach(self.mock_observer1)
         self.manager.attach(self.mock_observer2)
-        
+
         # Видаляємо першого
         self.manager.detach(self.mock_observer1)
-        
+
         self.assertEqual(len(self.manager._observers), 1)
         self.assertNotIn(self.mock_observer1, self.manager._observers)
         self.assertIn(self.mock_observer2, self.manager._observers)
@@ -51,17 +52,17 @@ class TestNotificationManager(unittest.TestCase):
         """Перевірка розсилки повідомлень всім підписникам"""
         self.manager.attach(self.mock_observer1)
         self.manager.attach(self.mock_observer2)
-        
+
         test_message = "Нова книга доступна!"
         self.manager.notify(test_message)
-        
+
         # Перевіряємо, чи викликався метод update() у КОЖНОГО підписника з правильним текстом
         self.mock_observer1.update.assert_called_once_with(test_message)
         self.mock_observer2.update.assert_called_once_with(test_message)
 
 
 class TestEmailNotifier(unittest.TestCase):
-    
+
     def setUp(self):
         """Підготовка для тестування конкретного Спостерігача"""
         self.email_notifier = EmailNotifier("test@example.com")
@@ -70,13 +71,14 @@ class TestEmailNotifier(unittest.TestCase):
     @patch('builtins.print')
     def test_update_prints_correct_message(self, mock_print):
         """Перевірка роботи методу update() (чи правильно формується повідомлення)"""
-        
+
         test_message = "Ваш термін оренди закінчується."
         self.email_notifier.update(test_message)
-        
+
         # Перевіряємо, чи викликав метод print() правильний текст
         expected_output = "Email sent to test@example.com: Ваш термін оренди закінчується."
         mock_print.assert_called_once_with(expected_output)
+
 
 if __name__ == '__main__':
     unittest.main()
