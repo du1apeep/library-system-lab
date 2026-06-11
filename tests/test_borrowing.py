@@ -14,7 +14,7 @@ class TestBorrowing(unittest.TestCase):
 
         self.mock_book = Mock()
         self.mock_book.title = "The Great Gatsby"
-        self.mock_book.isAvailable = False  # Імітуємо, що книга спочатку доступна
+        self.mock_book.isAvailable = True # Імітуємо, що книга спочатку доступна
 
         # 2. Створюємо реальний об'єкт, який ТЕСТУЄМО
         self.borrowing = Borrowing(self.mock_reader)
