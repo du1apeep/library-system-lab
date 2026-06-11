@@ -22,7 +22,8 @@ def main():
     found_books = my_catalog.catalog.search_by_title("Gatsby")
     if found_books:
         print(
-            f"Успіх! Книгу знайдено: '{found_books[0].title}', Автор: {found_books[0].author}")
+            f"Успіх! Книгу знайдено: '{found_books[0].title}',"
+            f" Автор: {found_books[0].author}")
     else:
         print("Книгу не знайдено у каталозі.")
 

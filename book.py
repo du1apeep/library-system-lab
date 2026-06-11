@@ -11,7 +11,12 @@ class Genre(Enum):
 
 
 class Book:
-    def __init__(self, id: int, title: str, author: str, genre: Genre, isAvailable: bool = True):
+    def __init__(self,
+                 id: int,
+                 title: str,
+                 author: str,
+                 genre: Genre,
+                 isAvailable: bool = True):
         self.id = id
         self.title = title
         self.author = author

@@ -12,7 +12,8 @@ class TestBorrowing(unittest.TestCase):
     def setUp(self):
         # 1. МОКАЄМО ЗАЛЕЖНОСТІ (Reader та Book) замість створення реальних об'єктів
         self.mock_reader = Mock()
-        self.mock_reader.name = "Alice"  # Задаємо ім'я, бо воно використовується у print()
+        self.mock_reader.name = "Alice"
+        # Задаємо ім'я, бо воно використовується у print()
 
         self.mock_book = Mock()
         self.mock_book.title = "The Great Gatsby"

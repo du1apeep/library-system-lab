@@ -32,4 +32,5 @@ class Borrowing:
                 print(f"{self.reader.name} returned '{book.title}'")
                 return
         print(
-            f"{self.reader.name} did not borrow '{book.title}' or has already returned it.")
+            f"{self.reader.name} did not borrow '{book.title}' or has already"
+            f" returned it.")

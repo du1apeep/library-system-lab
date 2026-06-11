@@ -35,7 +35,8 @@ class TestUser(unittest.TestCase):
 
     def test_reader_search_book_success(self):
         """2. Перевірка успішного пошуку книги читачем"""
-        # Налаштовуємо мок каталогу: коли викликають search_by_title, повертаємо список з нашою книгою
+        # Налаштовуємо мок каталогу: коли викликають search_by_title,
+        # повертаємо список з нашою книгою
         self.mock_catalog.search_by_title.return_value = [self.mock_book]
 
         # Викликаємо метод читача

@@ -56,7 +56,8 @@ class TestNotificationManager(unittest.TestCase):
         test_message = "Нова книга доступна!"
         self.manager.notify(test_message)
 
-        # Перевіряємо, чи викликався метод update() у КОЖНОГО підписника з правильним текстом
+        # Перевіряємо, чи викликався метод update()
+        # у КОЖНОГО підписника з правильним текстом
         self.mock_observer1.update.assert_called_once_with(test_message)
         self.mock_observer2.update.assert_called_once_with(test_message)
 
@@ -75,8 +76,10 @@ class TestEmailNotifier(unittest.TestCase):
         test_message = "Ваш термін оренди закінчується."
         self.email_notifier.update(test_message)
 
-        # Перевіряємо, чи викликав метод print() правильний текст
-        expected_output = "Email sent to test@example.com: Ваш термін оренди закінчується."
+        # Перевіряємо, чи викликав метод print()
+        # правильний текст
+        expected_output = "Email sent to test@example.com: "
+        "Ваш термін оренди закінчується."
         mock_print.assert_called_once_with(expected_output)
 
 

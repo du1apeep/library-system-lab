@@ -13,13 +13,14 @@ class TestCatalogSingleton(unittest.TestCase):
 
     def setUp(self):
         """
-        Підготовка до тесту. 
-        ОБОВ'ЯЗКОВО обнуляємо екземпляр Синглтона перед кожним тестом, 
+        Підготовка до тесту.
+        ОБОВ'ЯЗКОВО обнуляємо екземпляр Синглтона перед кожним тестом,
         щоб тести були незалежними один від одного.
         """
         Catalog._instance = None
 
-    # Використовуємо patch, щоб підмінити реальний BookCatalog на Mock під час ініціалізації
+    # Використовуємо patch, щоб підмінити реальний
+    # BookCatalog на Mock під час ініціалізації
     @patch('catalog.BookCatalog')
     def test_singleton_instance_creation(self, mock_book_catalog):
         """1. Перевірка, що створюється лише один об'єкт (Singleton)"""
@@ -28,7 +29,8 @@ class TestCatalogSingleton(unittest.TestCase):
         catalog1 = Catalog()
         catalog2 = Catalog()
 
-        # assertIs перевіряє, чи вказують обидві змінні на ОДНУ І ТУ САМУ ділянку пам'яті
+        # assertIs перевіряє, чи вказують обидві змінні
+        # на ОДНУ І ТУ САМУ ділянку пам'яті
         self.assertIs(catalog1, catalog2)
 
         # Перевіряємо, чи внутрішній BookCatalog створювався лише ОДИН раз
